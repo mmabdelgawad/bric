@@ -18,11 +18,13 @@ services:
       - ./:/var/www
 
   mysql:
-    image: mysql:8.0
+    image: mysql:5.7
     container_name: bric_mysql
     restart: unless-stopped
-    env_file:
-        - build/development.env
+    environment:
+      MYSQL_DATABASE: 'bric'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
     volumes:
       - bric_db:/var/lib/mysql
 
